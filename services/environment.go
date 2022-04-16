@@ -1,7 +1,6 @@
 package services
 
 import (
-	"fmt"
 	"github.com/joho/godotenv"
 	"log"
 	"os"
@@ -10,14 +9,14 @@ import (
 func InitEnv() {
 	e := godotenv.Load()
 	if e != nil {
-		fmt.Print(e)
+		log.Fatal(e)
 	}
 }
 
-func GetEnvVar(name string) string {
-	value := os.Getenv(name)
+func GetEnvVar(name string) (value string) {
+	value = os.Getenv(name)
 	if value == "" {
 		log.Fatal("There is no `" + name + "` env variable!")
 	}
-	return value
+	return
 }

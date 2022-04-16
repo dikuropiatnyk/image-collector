@@ -1,4 +1,4 @@
-module image-collector
+module github.com/dikuropiatnyk/image-collector
 
 go 1.17
 

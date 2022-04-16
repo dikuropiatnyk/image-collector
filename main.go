@@ -1,8 +1,8 @@
 package main
 
 import (
-	"image-collector/services"
-	u "image-collector/utils"
+	"github.com/dikuropiatnyk/image-collector/services"
+	u "github.com/dikuropiatnyk/image-collector/utils"
 	"strconv"
 )
 
@@ -11,5 +11,5 @@ func main() {
 	services.InitEnv()
 
 	println("Full URL is: " + u.RootImageURL + u.PhotosEndpoint + strconv.Itoa(u.DefaultImagesCount))
-	println("Your access key is: " + services.GetEnvVar(u.AccessKeyName))
+	services.GetPhotos()
 }
