@@ -2,14 +2,16 @@ package main
 
 import (
 	"github.com/dikuropiatnyk/image-collector/services"
-	u "github.com/dikuropiatnyk/image-collector/utils"
-	"strconv"
+	"log"
+	"time"
 )
 
 func main() {
+	start := time.Now()
 	// Initialize environment
 	services.InitEnv()
-
-	println("Full URL is: " + u.RootImageURL + u.PhotosEndpoint + strconv.Itoa(u.DefaultImagesCount))
-	services.GetPhotos()
+	encodedImages := services.CollectImagesInParallel()
+	services.SendImagesToProcessor(encodedImages)
+	elapsed := time.Since(start)
+	log.Printf("Total execution time: %s\n", elapsed)
 }

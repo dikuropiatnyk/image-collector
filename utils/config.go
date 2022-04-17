@@ -1,6 +1,8 @@
 package utils
 
 const RootImageURL = "https://api.unsplash.com/"
-const PhotosEndpoint = "photos?per_page="
+const ImagesEndpoint = "photos?per_page="
+const ImageProcessorURL = "http://127.0.0.1:8000/"
+const ProcessEndpoint = "process"
 const AccessKeyName = "ACCESS_KEY"
-const DefaultImagesCount = 10
+const DefaultImagesCount = 30

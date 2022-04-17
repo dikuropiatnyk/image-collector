@@ -1,9 +1,6 @@
 package models
 
-// TODO: Prepare a format to download image
-// TODO: Prepare a JSON-like object to send data to the Image Processor
-
-type Photo struct {
+type Image struct {
 	Id   string `json:"id"`
 	Urls struct {
 		Regular string `json:"regular"`
@@ -12,4 +9,17 @@ type Photo struct {
 	User struct {
 		Username string `json:"username"`
 	} `json:"user"`
+}
+
+type EncodedImages struct {
+	Images []EncodedImage
+}
+
+type EncodedImage struct {
+	Name    string
+	Encoded string
+}
+
+type ExpectedResult struct {
+	Result string `json:"result"`
 }
