@@ -94,8 +94,11 @@ func SendImagesToProcessor(images models.EncodedImages) {
 		log.Fatal(err)
 	}
 
-	var result models.ExpectedResult
-	sendRequest(http.MethodPost, u.ImageProcessorURL+u.ProcessEndpoint, headers, bytes.NewBuffer(jsonImages), &result)
+	var items []models.ItemResult
+	sendRequest(http.MethodPost, u.ImageProcessorURL+u.ProcessEndpoint, headers, bytes.NewBuffer(jsonImages), &items)
 
-	log.Printf("Image Processor response: %s\n", result.Result)
+	// Display results
+	for index, item := range items {
+		log.Printf("Image №%d response data: name - %s, etag - %s\n", index, item.ObjectName, item.Etag)
+	}
 }

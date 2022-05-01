@@ -20,6 +20,7 @@ type EncodedImage struct {
 	Encoded string
 }
 
-type ExpectedResult struct {
-	Result string `json:"result"`
+type ItemResult struct {
+	ObjectName string `json:"object_name"`
+	Etag       string `json:"etag"`
 }
