@@ -51,7 +51,7 @@ func sendRequest(method, fullUrl string, headers map[string][]string, body io.Re
 
 func GetImages() []models.Image {
 	token := "Client-ID " + GetEnvVar(u.AccessKeyName)
-	fullUrl := u.RootImageURL + u.ImagesEndpoint + strconv.Itoa(u.DefaultImagesCount)
+	counts := u.GenerateCounts()
 
 	headers := map[string][]string{
 		"Connection":     []string{"close"},
@@ -60,7 +60,14 @@ func GetImages() []models.Image {
 	}
 
 	var images []models.Image
-	sendRequest(http.MethodGet, fullUrl, headers, nil, &images)
+
+	for _, count := range counts {
+		var tempImages []models.Image
+		fullUrl := u.RootImageURL + u.ImagesEndpoint + strconv.Itoa(count)
+		sendRequest(http.MethodGet, fullUrl, headers, nil, &tempImages)
+
+		images = append(images, tempImages...)
+	}
 
 	if len(images) != u.DefaultImagesCount {
 		log.Fatalf(
