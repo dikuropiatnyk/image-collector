@@ -7,9 +7,12 @@ import (
 )
 
 func InitEnv() {
-	e := godotenv.Load()
-	if e != nil {
-		log.Fatal(e)
+	mode := GetEnvVar("ENV")
+	if mode == "local" {
+		e := godotenv.Load()
+		if e != nil {
+			log.Fatal(e)
+		}
 	}
 }
 

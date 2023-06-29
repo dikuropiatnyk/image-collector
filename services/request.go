@@ -93,9 +93,10 @@ func SendImagesToProcessor(images models.EncodedImages) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	imageProcessorURL := GetEnvVar(u.ImageProcessorEndpointName)
 
 	var items []models.ItemResult
-	sendRequest(http.MethodPost, u.ImageProcessorURL+u.ProcessEndpoint, headers, bytes.NewBuffer(jsonImages), &items)
+	sendRequest(http.MethodPost, imageProcessorURL+u.ProcessEndpoint, headers, bytes.NewBuffer(jsonImages), &items)
 
 	// Display results
 	for index, item := range items {

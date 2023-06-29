@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: collector
+spec:
+  # Every two hours
+  schedule: "0 */2 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: job
+              image: image-collector:latest
+              # This is needed to use local image for minikube
+              # On real cluster, should be deleted
+              imagePullPolicy: Never
+              env:
+                - name: ENV
+                  value: "remote"
+                - name: ACCESS_KEY
+                  value: "<access_key>"
+                - name: IMAGE_PROCESSOR_URL
+                  value: "http://processor-service:8000/"
+          restartPolicy: Never
