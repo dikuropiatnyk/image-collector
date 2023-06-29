@@ -99,6 +99,6 @@ func SendImagesToProcessor(images models.EncodedImages) {
 
 	// Display results
 	for index, item := range items {
-		log.Printf("Image №%d response data: name - %s, etag - %s\n", index, item.ObjectName, item.Etag)
+		log.Printf("Image №%d response data: name - %s, object_id - %s\n", index, item.ObjectName, item.ObjectId)
 	}
 }

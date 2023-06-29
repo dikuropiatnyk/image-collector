@@ -37,7 +37,8 @@ func getEncodedImageGoroutine(image models.Image, channel chan models.EncodedIma
 
 	// Add prepared object into the channel
 	channel <- models.EncodedImage{
-		Name:    imageName,
-		Encoded: encodedValue,
+		Name:        imageName,
+		Encoded:     encodedValue,
+		Description: image.Description,
 	}
 }
